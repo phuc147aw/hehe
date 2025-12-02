@@ -1,6 +1,7 @@
 eventlet
 gunicorn
 torch
+torchvision
 Cython
 wheel
 numpy==1.23
