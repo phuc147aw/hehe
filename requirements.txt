@@ -126,7 +126,7 @@ tensorboard==2.18.0
 tensorboard-data-server==0.7.2
 threadpoolctl==3.5.0
 tomlkit==0.13.2
-torch==1.13.1+cpu
+torch==1.13.1
 torch-stft==0.1.4
 torchaudio==0.13.1
 torchvision==0.14.1
