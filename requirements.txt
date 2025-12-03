@@ -54,7 +54,7 @@ itsdangerous==2.2.0
 Jinja2==3.1.4
 joblib==1.4.2
 kaldi-io==0.9.8
-kenlm @ https://github.com/kpu/kenlm/archive/master.zip#sha256=d23d300d559a45a5e3ede958dbbf2395231119c0b8cd97a1ea43480625894ff4
+kenlm @ https://github.com/kpu/kenlm/archive/master.zip
 keyboard==0.13.5
 kiwisolver==1.4.7
 lazy_loader==0.4
