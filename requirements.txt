@@ -82,7 +82,7 @@ playsound==1.2.2
 pooch==1.8.2
 protobuf==5.29.1
 psutil==6.1.0
-PyAudio==0.2.14
+
 pybind11==2.13.6
 pycparser==2.22
 pyctcdecode==0.1.1
