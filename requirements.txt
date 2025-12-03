@@ -2,6 +2,7 @@ eventlet
 gunicorn
 torch
 torchvision
+nemo_toolkit==1.2.0
 Cython
 wheel
 numpy==1.23
