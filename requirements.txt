@@ -2,7 +2,6 @@ eventlet
 gunicorn
 torch
 torchvision
-nemo_toolkit[asr]==1.15.0
 absl-py==2.1.0
 aiofiles==23.2.1
 annotated-types==0.7.0
