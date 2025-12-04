@@ -6,7 +6,6 @@ import numpy as np
 import librosa
 import soundfile as sf
 from ruamel.yaml import YAML
-import nemo
 import nemo.collections.asr as nemo_asr
 from nemo.backends.pytorch.nm import DataLayerNM
 from nemo.core.neural_types import NeuralType, AudioSignal, LengthsType
