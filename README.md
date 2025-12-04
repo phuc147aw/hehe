@@ -47,6 +47,30 @@ triển khai inference và phát triển API/web.
 
 Chỉnh trong `configs/config.yaml`.
 
+## 🐳 Deploy on Render
+
+This repository can be deployed to Render using Docker (CPU demo).
+
+### Steps
+
+1. Create a new **Web Service** on Render and connect this repository.
+2. Select **Docker** as the runtime environment.
+3. Set the following **Environment Variables**:
+   - `ENCODER_URL`: URL to download the encoder checkpoint (e.g., from cloud storage)
+   - `DECODER_URL`: URL to download the decoder checkpoint
+   - `LM_URL`: URL to download the language model binary
+   - `CONFIG_URL`: URL to download the config YAML file
+   - `PRELOAD_MODEL`: Set to `1` to preload the model at startup (optional)
+   - `SECRET_KEY`: Flask secret key (optional, defaults to `secret-key`)
+4. Set the **Health Check Path** to `/health`.
+5. Deploy the service.
+
+### Notes
+
+- The `start.sh` script will automatically download model files from the provided URLs before starting the server.
+- Model files are not included in the repository to keep it lightweight.
+- The `/health` endpoint returns `{"status": "healthy"}` for health checks.
+
 ## 📌 Technical highlight
 
 -   NVIDIA NeMo\

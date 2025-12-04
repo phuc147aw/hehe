@@ -1,32 +1,40 @@
 import os
-import requests
 import base64
 import time
 import librosa
-from flask import Flask, redirect, render_template, request
+from flask import Flask, redirect, render_template, request, jsonify
 from flask_socketio import SocketIO, emit
 from loguru import logger
 
-from infer import VietASR
-
 app = Flask(__name__)
-app.config["SECRET_KEY"] = "secret-key"
+app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "secret-key")
 socketio = SocketIO(app, cors_allowed_origins="*")
 
-# Model paths
-config = 'configs/quartznet12x1_vi.yaml'
-encoder_checkpoint = 'models/acoustic_model/vietnamese/Encoder-STEP-289936.pt'
-decoder_checkpoint = 'models/acoustic_model/vietnamese/Decoder-STEP-289936.pt'
-lm_path = 'models/language_model/5-gram-lm.binary'
+# Model paths from environment variables with defaults
+config = os.environ.get('ASR_CONFIG', 'configs/quartznet12x1_vi.yaml')
+encoder_checkpoint = os.environ.get('ENCODER_CHECKPOINT', 'models/acoustic_model/vietnamese/Encoder-STEP-289936.pt')
+decoder_checkpoint = os.environ.get('DECODER_CHECKPOINT', 'models/acoustic_model/vietnamese/Decoder-STEP-289936.pt')
+lm_path = os.environ.get('LM_PATH', 'models/language_model/5-gram-lm.binary')
+beam_width = int(os.environ.get('BEAM_WIDTH', '50'))
 
-# Load ASR model
-vietasr = VietASR(
-    config_file=config,
-    encoder_checkpoint=encoder_checkpoint,
-    decoder_checkpoint=decoder_checkpoint,
-    lm_path=lm_path,
-    beam_width=50
-)
+# Lazy-load ASR model
+vietasr = None
+
+def get_vietasr():
+    """Lazy-load and return the VietASR model instance."""
+    global vietasr
+    if vietasr is None:
+        from infer import VietASR
+        logger.info("Loading VietASR model...")
+        vietasr = VietASR(
+            config_file=config,
+            encoder_checkpoint=encoder_checkpoint,
+            decoder_checkpoint=decoder_checkpoint,
+            lm_path=lm_path,
+            beam_width=beam_width
+        )
+        logger.info("VietASR model loaded successfully.")
+    return vietasr
 
 STATIC_DIR = "static"
 UPLOAD_DIR = "upload"
@@ -60,7 +68,7 @@ def handle_audio_from_client(data):
 
     logger.info("ASR processing...")
     audio_signal, _ = librosa.load(filepath, sr=16000)
-    transcript = vietasr.transcribe(audio_signal)
+    transcript = get_vietasr().transcribe(audio_signal)
 
     emit('audio_to_client', {'filepath': filepath, 'transcript': transcript})
 
@@ -74,9 +82,14 @@ def handle_upload():
     _file.save(filepath)
 
     audio_signal, _ = librosa.load(filepath, sr=16000)
-    transcript = vietasr.transcribe(audio_signal)
+    transcript = get_vietasr().transcribe(audio_signal)
 
     return render_template("index.html", transcript=transcript, audiopath=filepath)
+
+@app.route('/health')
+def health():
+    """Health check endpoint for Render deployment."""
+    return jsonify({"status": "healthy"}), 200
 
 # Quan trọng: KHÔNG chạy socketio.run khi deploy
 # Render sẽ chạy qua gunicorn
