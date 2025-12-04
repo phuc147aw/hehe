@@ -15,7 +15,10 @@ config = os.environ.get('ASR_CONFIG', 'configs/quartznet12x1_vi.yaml')
 encoder_checkpoint = os.environ.get('ENCODER_CHECKPOINT', 'models/acoustic_model/vietnamese/Encoder-STEP-289936.pt')
 decoder_checkpoint = os.environ.get('DECODER_CHECKPOINT', 'models/acoustic_model/vietnamese/Decoder-STEP-289936.pt')
 lm_path = os.environ.get('LM_PATH', 'models/language_model/5-gram-lm.binary')
-beam_width = int(os.environ.get('BEAM_WIDTH', '50'))
+try:
+    beam_width = int(os.environ.get('BEAM_WIDTH', '50'))
+except ValueError:
+    beam_width = 50
 
 # Lazy-load ASR model
 vietasr = None

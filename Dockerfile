@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 WORKDIR /app
 
 # Install CPU PyTorch wheel first
-RUN pip install --no-cache-dir torch==1.13.1+cpu torchaudio==0.13.1+cpu -f https://download.pytorch.org/whl/torch_stable.html
+RUN pip install --no-cache-dir torch==1.13.1+cpu torchaudio==0.13.1+cpu -f https://download.pytorch.org/whl/cpu
 
 # Copy requirements and install dependencies
 COPY requirements-prod.txt .

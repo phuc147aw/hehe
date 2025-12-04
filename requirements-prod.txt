@@ -16,7 +16,7 @@ torch==1.13.1
 torchaudio==0.13.1
 omegaconf==2.3.0
 hydra-core==1.3.2
-kenlm @ https://github.com/kpu/kenlm/archive/master.zip
+kenlm @ https://github.com/kpu/kenlm/archive/56f3b6a69bc4c7c0a3ec0f8a9e65720e8a3ade14.zip
 pyctcdecode==0.1.1
 editdistance
 sentencepiece==0.1.96

@@ -14,7 +14,7 @@ mkdir -p configs
 # Download encoder checkpoint
 if [ -n "$ENCODER_URL" ]; then
     echo "Downloading encoder from $ENCODER_URL..."
-    curl -L -o models/acoustic_model/vietnamese/Encoder-STEP-289936.pt "$ENCODER_URL"
+    curl -fSL -o models/acoustic_model/vietnamese/Encoder-STEP-289936.pt "$ENCODER_URL" || { echo "Failed to download encoder"; exit 1; }
 else
     echo "ENCODER_URL not set, skipping encoder download."
 fi
@@ -22,7 +22,7 @@ fi
 # Download decoder checkpoint
 if [ -n "$DECODER_URL" ]; then
     echo "Downloading decoder from $DECODER_URL..."
-    curl -L -o models/acoustic_model/vietnamese/Decoder-STEP-289936.pt "$DECODER_URL"
+    curl -fSL -o models/acoustic_model/vietnamese/Decoder-STEP-289936.pt "$DECODER_URL" || { echo "Failed to download decoder"; exit 1; }
 else
     echo "DECODER_URL not set, skipping decoder download."
 fi
@@ -30,7 +30,7 @@ fi
 # Download language model
 if [ -n "$LM_URL" ]; then
     echo "Downloading language model from $LM_URL..."
-    curl -L -o models/language_model/5-gram-lm.binary "$LM_URL"
+    curl -fSL -o models/language_model/5-gram-lm.binary "$LM_URL" || { echo "Failed to download language model"; exit 1; }
 else
     echo "LM_URL not set, skipping language model download."
 fi
@@ -38,7 +38,7 @@ fi
 # Download config file
 if [ -n "$CONFIG_URL" ]; then
     echo "Downloading config from $CONFIG_URL..."
-    curl -L -o configs/quartznet12x1_vi.yaml "$CONFIG_URL"
+    curl -fSL -o configs/quartznet12x1_vi.yaml "$CONFIG_URL" || { echo "Failed to download config"; exit 1; }
 else
     echo "CONFIG_URL not set, skipping config download."
 fi
