@@ -1,10 +1,15 @@
 #!/usr/bin/env bash
 set -e
-
-# Download models if URLs provided
 ./download_models.sh || true
 
-# Optionally preload model to avoid first-request latency:
+echo "Debug: checking installed packages..."
+python - <<PY
+import importlib, pkgutil
+print("braceexpand found:", pkgutil.find_loader("braceexpand") is not None)
+import huggingface_hub
+print("huggingface_hub version:", getattr(huggingface_hub, "__version__", "unknown"))
+PY
+
 if [ "$PRELOAD_MODEL" = "1" ]; then
   echo "Preloading model..."
   python - <<PY
@@ -14,5 +19,4 @@ print("Model preloaded")
 PY
 fi
 
-# Run gunicorn with eventlet worker for Flask-SocketIO
 exec gunicorn -k eventlet -w 1 app:app -b 0.0.0.0:${PORT:-8080}
