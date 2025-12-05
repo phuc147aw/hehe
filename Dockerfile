@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 WORKDIR /app
 
 # Copy requirements
-COPY requirements-prod.txt /app/requirements-prod.txt
+COPY requirements-prod.txt /app/requirements.txt
 
 RUN pip install --upgrade pip
 
