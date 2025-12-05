@@ -20,5 +20,9 @@ omegaconf==2.3.0
 pytorch-lightning==1.9.5
 huggingface-hub==0.14.1
 braceexpand==0.1.7
-
 webdataset==0.2.86
+
+# Thêm để fix lỗi hiện tại
+transformers==4.30.2
+tokenizers==0.13.3
+safetensors==0.3.1
