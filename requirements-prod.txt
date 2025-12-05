@@ -1,4 +1,8 @@
 flask==2.0.3
+Werkzeug==2.0.3
+itsdangerous==2.0.1
+Jinja2==3.0.3
+click==8.0.4
 flask-socketio==4.3.1
 librosa==0.10.2.post1
 loguru==0.7.3
