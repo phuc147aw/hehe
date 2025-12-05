@@ -19,10 +19,20 @@ hydra-core==1.3.2
 omegaconf==2.3.0
 pytorch-lightning==1.9.5
 huggingface-hub==0.14.1
+
 braceexpand==0.1.7
 webdataset==0.2.86
 
-# Thêm để fix lỗi hiện tại
 transformers==4.30.2
 tokenizers==0.13.3
 safetensors==0.3.1
+
+# Bổ sung phụ thuộc thường gặp của NeMo
+pandas==1.5.3
+sentencepiece==0.1.96
+ruamel.yaml==0.18.6
+ruamel.yaml.clib==0.2.12
+pyctcdecode==0.5.0
+soxr==0.5.0.post1
+sox==1.5.0
+tensorboard==2.12.3
