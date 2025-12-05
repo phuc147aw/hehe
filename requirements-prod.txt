@@ -3,14 +3,21 @@ Werkzeug==2.0.3
 itsdangerous==2.0.1
 Jinja2==3.0.3
 click==8.0.4
+
 flask-socketio==4.3.1
-librosa==0.10.2.post1
-loguru==0.7.3
-gunicorn==20.1.0
 eventlet==0.33.3
+gunicorn==20.1.0
+
+# ASR/Audio stack
+librosa==0.10.2.post1
 numpy==1.23.0
 soundfile==0.12.1
 audioread==3.0.1
-# NeMo và các libs:
+loguru==0.7.3
+
+# NeMo và phụ thuộc quan trọng
 nemo-toolkit==1.15.0
-# Hãy cẩn thận với khối lượng/compatibility của NeMo; nếu gặp lỗi build, cân nhắc dùng wheel phù hợp
+hydra-core==1.3.2
+omegaconf==2.3.0
+pytorch-lightning==1.9.5
+# Nếu cần: sentencepiece, torch-stft, sox/soxr vv. (đã có trong requirements.txt gốc, thêm sau nếu báo thiếu)
