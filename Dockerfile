@@ -25,7 +25,8 @@ RUN pip install --upgrade pip
 RUN pip install --no-cache-dir torch==1.13.1+cpu -f https://download.pytorch.org/whl/cpu/torch_stable.html
 
 # Cài các package runtime (bao gồm NeMo - có thể nặng)
-RUN pip install --no-cache-dir -r /app/requirements.txt
+RUN pip install --no-cache-dir -r /app/requirements.txt \
+ && pip install --no-cache-dir --force-reinstall --no-deps huggingface-hub==0.14.1
 
 # Copy app code & scripts
 COPY . /app
