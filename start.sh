@@ -2,13 +2,8 @@
 set -e
 ./download_models.sh || true
 
-echo "Debug: checking installed packages..."
-python - <<PY
-import importlib, pkgutil
-print("braceexpand found:", pkgutil.find_loader("braceexpand") is not None)
-import huggingface_hub
-print("huggingface_hub version:", getattr(huggingface_hub, "__version__", "unknown"))
-PY
+echo "Preflight import check..."
+python scripts/check_imports.py || true
 
 if [ "$PRELOAD_MODEL" = "1" ]; then
   echo "Preloading model..."
