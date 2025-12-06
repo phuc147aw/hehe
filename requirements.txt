@@ -40,3 +40,4 @@ pyctcdecode==0.5.0
 soxr==0.5.0.post1
 sox==1.5.0
 tensorboard==2.12.3
+youtokentome==1.0.0
