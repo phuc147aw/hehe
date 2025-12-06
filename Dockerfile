@@ -15,6 +15,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libbz2-dev \
     liblzma-dev \
     pkg-config \
+    sox \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
