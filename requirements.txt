@@ -42,3 +42,6 @@ sox==1.5.0
 tensorboard==2.12.3
 youtokentome==1.0.0
 inflect==7.4.0
+
+# Diarization metrics (NeMo DER)
+pyannote.core==5.0.0
