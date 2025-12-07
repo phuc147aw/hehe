@@ -44,8 +44,9 @@ youtokentome==1.0.0
 inflect==7.4.0
 
 # Diarization metrics (NeMo DER)
-pyannote.core==5.0.0
-pyannote.metrics==3.2.2
+pyannote.metrics==3.2.1
+pyannote.core==4.5
+
 editdistance==0.8.1
 jiwer==3.0.3
 IPython==8.12.0
