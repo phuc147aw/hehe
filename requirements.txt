@@ -47,3 +47,4 @@ inflect==7.4.0
 pyannote.core==5.0.0
 pyannote.metrics==3.2.1
 editdistance==0.8.1
+jiwer==3.0.3
